@@ -11,12 +11,7 @@ const {
   //   deleteProduct,
   getAllProducts,
 } = require("../controllers/product");
-// const { isSignedIn, isAuthenticated, isAdmin } = require("../controllers/auth");
-// const { getUserById } = require("../controllers/user");
-
-//all of params
-// router.param("userId", getUserById);
-// router.param("productId", getProductById);
+const { isAuthenticated } = require("../controllers/auth");
 
 //all of actual routes
 
@@ -24,17 +19,21 @@ const {
 router.post(
   "/product/create",
   //   isSignedIn,
-  //   isAuthenticated,
+  isAuthenticated,
   //   isAdmin,
   upload.array("featuredImageUrl"),
   createProduct
 );
 
 // fitness type route
-router.get("/product/fitnessType/:id", getProductByFitnessType);
+router.get(
+  "/product/fitnessType/:id",
+  isAuthenticated,
+  getProductByFitnessType
+);
 // product details by id routes
 
-router.get("/product/:id", getProductById);
+router.get("/product/:id", isAuthenticated, getProductById);
 // router.get("/product/photo/:productId", photo);
 
 //delete route
@@ -56,7 +55,7 @@ router.get("/product/:id", getProductById);
 // );
 
 //listing route
-router.get("/product", getAllProducts);
+router.get("/product", isAuthenticated, getAllProducts);
 
 // router.get("/products/categories", getAllUniqueCategories);
 

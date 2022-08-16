@@ -2,8 +2,6 @@ const Product = require("../models/product");
 const formidable = require("formidable");
 
 const _ = require("lodash");
-// const multer = require("multer");
-// const aws = require("aws-sdk");
 const { s3Uploadv2, s3Uploadv3 } = require("../s3Config");
 
 // const storage = multer.memoryStorage();
