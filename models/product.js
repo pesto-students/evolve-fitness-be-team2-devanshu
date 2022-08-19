@@ -3,9 +3,13 @@ const { ObjectId } = mongoose.Schema;
 
 const productSchema = new mongoose.Schema(
   {
+    gymOwnerId: {
+      type: String,
+      required: true,
+    },
     fitnessType: {
       type: String,
-      enum: ["gym", "yoga", "zumba","martialart"],
+      enum: ["gym", "yoga", "zumba", "martialart"],
       default: "gym",
     },
     name: {

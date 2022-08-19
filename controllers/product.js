@@ -4,25 +4,20 @@ const formidable = require("formidable");
 const _ = require("lodash");
 const { s3Uploadv2, s3Uploadv3 } = require("../s3Config");
 
-// const storage = multer.memoryStorage();
 
-// const fileFilter = (req, file, cb) => {
-//   if (file.mimetype.split("/")[0] === "image") {
-//     cb(null, true);
-//   } else {
-//     cb(new multer.MulterError("LIMIT_UNEXPECTED_FILE"), false);
-//   }
-// };
-
-// const upload = multer({
-//   storage,
-//   fileFilter,
-//   limits: { fileSize: 1000000000, files: 3 },
-// });
 
 // CREATE controllers
 exports.createProduct = async (req, res) => {
-  const { name, description, category, address, price, fitnessType } = req.body;
+  console.log("inside", req.body);
+  const {
+    name,
+    description,
+    category,
+    address,
+    price,
+    fitnessType,
+    gymOwnerId,
+  } = req.body;
   const results = await s3Uploadv2(req.files);
   let imageUrl = results.map((item) => {
     return item.Location;
@@ -35,7 +30,11 @@ exports.createProduct = async (req, res) => {
     price: price,
     featuredImageUrl: imageUrl,
     fitnessType: fitnessType,
+    gymOwnerId: gymOwnerId,
   });
+
+
+  
   //save to the DB
   product.save((err, product) => {
     if (err) {
@@ -48,8 +47,9 @@ exports.createProduct = async (req, res) => {
   });
 };
 
-// ProductByFitnessType controllers
 
+
+// ProductByFitnessType controllers
 exports.getProductByFitnessType = async (req, res) => {
   const { id } = req.params;
 
@@ -62,12 +62,16 @@ exports.getProductByFitnessType = async (req, res) => {
     console.log("there is an error in your DB");
   }
 };
-// product by controllers
+
+
+
+// get product by id
 exports.getProductById = async (req, res) => {
   const { id } = req.params;
 
   try {
     const product = await Product.find({ _id: id });
+    delete product["gymOwnerId"];
     res.json({
       product,
     });
@@ -75,21 +79,30 @@ exports.getProductById = async (req, res) => {
     console.log("there is an error in your DB", error);
   }
 };
-// delete controllers
-exports.deleteProduct = (req, res) => {
-  let product = req.product;
-  product.remove((err, deletedProduct) => {
-    if (err) {
-      return res.status(400).json({
-        error: "Failed to delete the product",
+
+
+
+//  product by owner id
+exports.getProductByOwnerId = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const product = await Product.find({ gymOwnerId: id });
+    if (product.length === 0) {
+      return res.status(201).json({
+        error: "data not found",
+      });
+    } else {
+      res.json({
+        product,
       });
     }
-    res.json({
-      message: "Deletion was a success",
-      deletedProduct,
-    });
-  });
+  } catch (error) {
+    console.log("there is an error in your DB", error);
+  }
 };
+
+
 
 // Todo Update controllers
 exports.updateProduct = (req, res) => {
@@ -122,7 +135,6 @@ exports.updateProduct = (req, res) => {
         console.log(err);
       }
     }
-    // console.log(product);
 
     //save to the DB
     product.save((err, product) => {
@@ -137,6 +149,8 @@ exports.updateProduct = (req, res) => {
 
   res.json({ results: req.body });
 };
+
+
 
 // All Product Controller
 exports.getAllProducts = async (req, res) => {
