@@ -14,6 +14,8 @@ const { s3Uploadv2, s3Uploadv3 } = require("./s3Config");
 // const userRoutes = require("./routes/user");
 // const categoryRoutes = require("./routes/category");
 const productRoutes = require("./routes/product");
+const adminUserRoutes = require("./routes/adminUser");
+const BlogRoutes = require("./routes/blog");
 // const orderRoutes = require("./routes/order");
 // const paymentBRoutes = require("./routes/paymentBRoutes");
 
@@ -37,6 +39,8 @@ app.use(cors());
 // app.use("/api", userRoutes);
 // app.use("/api", categoryRoutes);
 app.use("/api", productRoutes);
+app.use("/api", adminUserRoutes);
+// app.use("/api", BlogRoutes);
 // app.use("/api", orderRoutes);
 // app.use("/api", paymentBRoutes);
 app.use((error, req, res, next) => {

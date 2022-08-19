@@ -1,13 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const { upload } = require("../UplodeImage");
-
 const { createBlog, BlogById, getAllBlogs } = require("../controllers/blog");
-const { route } = require("./product");
-
 
 // Get All Blogs
-route.post("/blog",getAllBlogs)
+router.post("/blog", getAllBlogs);
 
 //  Create Route
 router.post(
@@ -19,8 +16,9 @@ router.post(
   createBlog
 );
 
-
 // Get By Id Route
 router.get("/blog/:id", BlogById);
 
 // Todo dele Route
+
+module.exports = router;

@@ -10,17 +10,17 @@ const {
   //   updateProduct,
   //   deleteProduct,
   getAllProducts,
+  getProductByOwnerId,
 } = require("../controllers/product");
-const { isAuthenticated } = require("../controllers/auth");
+const { isAuthenticated, isAdmin } = require("../controllers/auth");
 
 //all of actual routes
 
 //create route
 router.post(
   "/product/create",
-  //   isSignedIn,
   isAuthenticated,
-  //   isAdmin,
+  // isAdmin,
   upload.array("featuredImageUrl"),
   createProduct
 );
@@ -34,7 +34,9 @@ router.get(
 // product details by id routes
 
 router.get("/product/:id", isAuthenticated, getProductById);
-// router.get("/product/photo/:productId", photo);
+
+// product by owner id
+router.get("/product/owner/:id", isAdmin, isAuthenticated, getProductByOwnerId);
 
 //delete route
 // router.delete(
