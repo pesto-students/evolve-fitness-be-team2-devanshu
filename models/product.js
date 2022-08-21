@@ -26,8 +26,13 @@ const productSchema = new mongoose.Schema(
     address: {
       phoneNumber: String,
       url: String,
+      phoneNumber: String,
+      state: String,
+      country: String,
+      area: String,
+      city: String,
       type: Object,
-      // required: true,
+      required: true,
     },
     price: {
       gold: {
@@ -69,10 +74,10 @@ const productSchema = new mongoose.Schema(
       {
         reviewId: ObjectId,
         text: String,
-        // Date: Date.now(),
+        pubDate: Date,
         stars: Number,
         userName: String,
-        userId: Number,
+        userId: String,
       },
     ],
   },
