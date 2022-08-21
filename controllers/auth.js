@@ -21,7 +21,6 @@ exports.isAuthenticated = async (req, res, next) => {
 exports.isAdmin = async (req, res, next) => {
   const { id } = req.params;
   let user = await User.find({ userId: id });
-  console.log("isAdmin", user, id);
   if (user.length === 0) {
     return res.status(400).json({
       error: "You are not USER",

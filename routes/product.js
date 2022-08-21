@@ -6,11 +6,12 @@ const {
   getProductById,
   createProduct,
   getProductByFitnessType,
-  getProduct,
-  //   updateProduct,
+  updateProduct,
   //   deleteProduct,
   getAllProducts,
   getProductByOwnerId,
+  createReview,
+  getProductByCity,
 } = require("../controllers/product");
 const { isAuthenticated, isAdmin } = require("../controllers/auth");
 
@@ -20,7 +21,7 @@ const { isAuthenticated, isAdmin } = require("../controllers/auth");
 router.post(
   "/product/create",
   isAuthenticated,
-  // isAdmin,
+  isAdmin,
   upload.array("featuredImageUrl"),
   createProduct
 );
@@ -31,12 +32,27 @@ router.get(
   isAuthenticated,
   getProductByFitnessType
 );
-// product details by id routes
 
+// update route
+router.put(
+  "/product/:productId/:id",
+  isAuthenticated,
+  isAdmin,
+  upload.array("featuredImageUrl"),
+  updateProduct
+);
+
+// product rating
+router.patch("/product/review/:id", isAuthenticated, createReview);
+
+// product details by id routes
 router.get("/product/:id", isAuthenticated, getProductById);
 
 // product by owner id
 router.get("/product/owner/:id", isAdmin, isAuthenticated, getProductByOwnerId);
+
+// product by city name
+router.get("/product/city/:id", isAuthenticated, getProductByCity);
 
 //delete route
 // router.delete(
@@ -45,15 +61,6 @@ router.get("/product/owner/:id", isAdmin, isAuthenticated, getProductByOwnerId);
 //   isAuthenticated,
 //   isAdmin,
 //   deleteProduct
-// );
-
-//update route
-// router.put(
-//   "/product/:productId/:userId",
-//   isSignedIn,
-//   isAuthenticated,
-//   isAdmin,
-//   updateProduct
 // );
 
 //listing route

@@ -4,11 +4,8 @@ const formidable = require("formidable");
 const _ = require("lodash");
 const { s3Uploadv2, s3Uploadv3 } = require("../s3Config");
 
-
-
 // CREATE controllers
 exports.createProduct = async (req, res) => {
-  console.log("inside", req.body);
   const {
     name,
     description,
@@ -26,15 +23,13 @@ exports.createProduct = async (req, res) => {
     name: name,
     description: description,
     category: category,
-    address: address,
-    price: price,
+    address: JSON.parse(address),
+    price: JSON.parse(price),
     featuredImageUrl: imageUrl,
     fitnessType: fitnessType,
     gymOwnerId: gymOwnerId,
   });
 
-
-  
   //save to the DB
   product.save((err, product) => {
     if (err) {
@@ -47,7 +42,65 @@ exports.createProduct = async (req, res) => {
   });
 };
 
+//  Update controllers
+exports.updateProduct = async (req, res) => {
+  const { productId } = req.params;
+  const {
+    name,
+    description,
+    category,
+    address,
+    price,
+    fitnessType,
+    gymOwnerId,
+  } = req.body;
+  const results = await s3Uploadv2(req.files);
+  let imageUrl = results.map((item) => {
+    return item.Location;
+  });
+  Product.findByIdAndUpdate(
+    { _id: productId },
+    {
+      $set: {
+        name: name,
+        description: description,
+        category: category,
+        address: JSON.parse(address),
+        price: JSON.parse(price),
+        featuredImageUrl: imageUrl,
+        fitnessType: fitnessType,
+        gymOwnerId: gymOwnerId,
+      },
+    },
+    (err, product) => {
+      if (err) {
+        console.log(err);
+        return res.status(400).json({
+          error: "You are not authorized to update this user",
+        });
+      }
+      res.json(product);
+    }
+  );
+};
 
+//  CREATE rating
+exports.createReview = (req, res) => {
+  const { id } = req.params;
+  Product.findOneAndUpdate(
+    { _id: id },
+    { $push: { reviews: req.body } },
+    (err, data) => {
+      if (err) {
+        console.log(err);
+        return res.status(400).json({
+          error: "failed to add review",
+        });
+      }
+      res.json(data.reviews);
+    }
+  );
+};
 
 // ProductByFitnessType controllers
 exports.getProductByFitnessType = async (req, res) => {
@@ -62,8 +115,6 @@ exports.getProductByFitnessType = async (req, res) => {
     console.log("there is an error in your DB");
   }
 };
-
-
 
 // get product by id
 exports.getProductById = async (req, res) => {
@@ -80,9 +131,7 @@ exports.getProductById = async (req, res) => {
   }
 };
 
-
-
-//  product by owner id
+// get product by owner id
 exports.getProductByOwnerId = async (req, res) => {
   const { id } = req.params;
 
@@ -102,55 +151,24 @@ exports.getProductByOwnerId = async (req, res) => {
   }
 };
 
+exports.getProductByCity = async (req, res) => {
+  const { id } = req.params;
 
-
-// Todo Update controllers
-exports.updateProduct = (req, res) => {
-  let form = new formidable.IncomingForm();
-  form.keepExtensions = true;
-
-  form.parse(req, async (err, fields, file) => {
-    if (err) {
-      return res.status(400).json({
-        error: "problem with image",
+  try {
+    const product = await Product.find({ "address.city": id });
+    if (product.length === 0) {
+      return res.status(404).json({
+        error: "data not found",
+      });
+    } else {
+      res.json({
+        product,
       });
     }
-
-    //updation code
-    let product = req.product;
-    product = _.extend(product, fields);
-
-    //handle file here
-    if (file.featuredImageUrl) {
-      if (file.photo.size > 3000000) {
-        return res.status(400).json({
-          error: "File size too big!",
-        });
-      }
-      try {
-        const results = await s3Uploadv2(req.files);
-        console.log(results);
-        return res.json({ status: "success" });
-      } catch (err) {
-        console.log(err);
-      }
-    }
-
-    //save to the DB
-    product.save((err, product) => {
-      if (err) {
-        res.status(400).json({
-          error: "Updation of product failed",
-        });
-      }
-      res.json(product);
-    });
-  });
-
-  res.json({ results: req.body });
+  } catch (error) {
+    console.log("there is an error in your DB", error);
+  }
 };
-
-
 
 // All Product Controller
 exports.getAllProducts = async (req, res) => {
