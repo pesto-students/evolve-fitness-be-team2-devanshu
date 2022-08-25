@@ -9,7 +9,35 @@ exports.getAllBlogs = async (req, res) => {
 };
 
 // Create Blog Controller
-exports.createBlog = (req, res) => {};
+exports.createBlog = (req, res) => {
+   let blog = new Blog({
+     title: {
+       type: String,
+       required: true,
+     },
+     shortSDescription: {
+       type: String,
+       required: true,
+     },
+     description: {
+       type: String,
+       required: true,
+     },
+     featuredImageUrl: {
+       type: Array,
+     },
+   });
+  //save to the DB
+  Blog.save((err, product) => {
+    if (err) {
+      console.log(err);
+      res.status(400).json({
+        error: "Saving Product in DB failed",
+      });
+    }
+    res.json(product);
+  });
+};
 
 //  Get  Blog  By Id Controller
 exports.BlogById = async (req, res) => {

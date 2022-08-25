@@ -19,7 +19,7 @@ const { isAuthenticated, isAdmin } = require("../controllers/auth");
 
 //create route
 router.post(
-  "/product/create",
+  "/product/create/:id",
   isAuthenticated,
   isAdmin,
   upload.array("featuredImageUrl"),
@@ -28,7 +28,7 @@ router.post(
 
 // fitness type route
 router.get(
-  "/product/fitnessType/:id",
+  "/product/fitnessType/:city/:id",
   isAuthenticated,
   getProductByFitnessType
 );

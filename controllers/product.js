@@ -104,10 +104,12 @@ exports.createReview = (req, res) => {
 
 // ProductByFitnessType controllers
 exports.getProductByFitnessType = async (req, res) => {
-  const { id } = req.params;
-
+  const { id, city } = req.params;
   try {
-    const product = await Product.find({ fitnessType: id });
+    const product = await Product.find({
+      fitnessType: id,
+      "address.city": city,
+    });
     res.json({
       product,
     });
@@ -151,6 +153,7 @@ exports.getProductByOwnerId = async (req, res) => {
   }
 };
 
+// get product by city name
 exports.getProductByCity = async (req, res) => {
   const { id } = req.params;
 

@@ -31,6 +31,7 @@ const productSchema = new mongoose.Schema(
       country: String,
       area: String,
       city: String,
+      completeAddress: String,
       type: Object,
       required: true,
     },
