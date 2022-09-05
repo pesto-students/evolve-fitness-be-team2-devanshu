@@ -21,7 +21,7 @@ const { isAuthenticated, isAdmin } = require("../controllers/auth");
 router.post(
   "/product/create/:id",
   isAuthenticated,
-  // isAdmin,
+  isAdmin,
   upload.array("featuredImageUrl"),
   createProduct
 );
