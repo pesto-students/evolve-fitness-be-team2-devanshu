@@ -17,6 +17,7 @@ We have used MERN stack for the project with some new technologies.
 - Bootstrap 
 - Firebase
 - Express JS
+- Node JS
 - MongoDB
 - Heroku
 ## Installation and Run the Project
