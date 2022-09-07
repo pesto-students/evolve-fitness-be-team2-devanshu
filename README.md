@@ -24,7 +24,7 @@ We have used MERN stack for the project with some new technologies.
 Install Evolve Fitness with npm
 
 ```bash
-  git clone https://github.com/pesto-students/evolve-fitness-fe-team2-devanshu.git
+  git clone https://github.com/pesto-students/evolve-fitness-be-team2-devanshu.git
 
   npm Install
 
