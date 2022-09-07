@@ -24,7 +24,6 @@ const productSchema = new mongoose.Schema(
       type: Array,
     },
     address: {
-      phoneNumber: String,
       url: String,
       phoneNumber: String,
       state: String,

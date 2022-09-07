@@ -1,7 +1,5 @@
 const Product = require("../models/product");
-
-const _ = require("lodash");
-const { s3Uploadv2, s3Uploadv3 } = require("../s3Config");
+const { s3Uploadv2 } = require("../s3Config");
 
 // CREATE controllers
 exports.createProduct = async (req, res) => {
