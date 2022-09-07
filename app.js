@@ -8,12 +8,12 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const multer = require("multer");
 
-const { s3Uploadv2, s3Uploadv3 } = require("./s3Config");
+
 
 //My routes
 const productRoutes = require("./routes/product");
 const adminUserRoutes = require("./routes/adminUser");
-const BlogRoutes = require("./routes/blog");
+// const BlogRoutes = require("./routes/blog");
 
 //DB Connection
 mongoose
@@ -38,7 +38,7 @@ app.use("/api", productRoutes);
 // Controller for admin
 app.use("/api", adminUserRoutes);
 
-app.use((error, req, res, next) => {
+app.use((error, req, res) => {
   if (error instanceof multer.MulterError) {
     if (error.code === "LIMIT_FILE_SIZE") {
       return res.status(400).json({

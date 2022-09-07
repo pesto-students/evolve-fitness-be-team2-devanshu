@@ -10,32 +10,21 @@ exports.getAllBlogs = async (req, res) => {
 
 // Create Blog Controller
 exports.createBlog = (req, res) => {
-   let blog = new Blog({
-     title: {
-       type: String,
-       required: true,
-     },
-     shortSDescription: {
-       type: String,
-       required: true,
-     },
-     description: {
-       type: String,
-       required: true,
-     },
-     featuredImageUrl: {
-       type: Array,
-     },
-   });
+  const { title, shortSDescription, description } = req.body;
+  let blog = new Blog({
+    title,
+    shortSDescription,
+    description,
+  });
   //save to the DB
-  Blog.save((err, product) => {
+  blog.save((err, blog) => {
     if (err) {
       console.log(err);
       res.status(400).json({
-        error: "Saving Product in DB failed",
+        error: "Saving blog in DB failed",
       });
     }
-    res.json(product);
+    res.json(blog);
   });
 };
 

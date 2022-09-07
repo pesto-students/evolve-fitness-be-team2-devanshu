@@ -1,21 +1,36 @@
-# Pesto Assignments
 
-Welcome to Pesto assignments.
+# Evolve Fitness
+
+Evolve Fitness will assist users in finding their preferred Nearby fitness center experience and also businesses to list their centers to be explored by the customers. With the help of the most up-to-date interactive UI experience, where users can locate branded and local goods as well as trendy fitness centers, Users can use our platform to get the most accurate results.
 
 
-## How to solve assignments
+## Demo
 
-Weekly Assignments will be shared by your mentor or instructor.
+https://evolvefitness-359319.web.app/
 
-Make sure master or main branch is protected and you are not able to push any code directly to master.
 
-- Clone this repo to your local.
-- Checkout to new branch for submission. Suggestion you can name new branch week wise - branch for week 1 assignment can be week1
+## Technology Stack
+
+We have used MERN stack for the project with some new technologies.
+
+- React JS
+- Bootstrap 
+- Firebase
+- Express JS
+- MongoDB
+- Heroku
+## Installation and Run the Project
+
+Install Evolve Fitness with npm
+
 ```bash
-git checkout -b week1
+  git clone https://github.com/pesto-students/evolve-fitness-fe-team2-devanshu.git
+
+  npm Install
+
+  npm start
 ```
-- Create Assignment week folder in root directory(if it doesn't exist) for eg. for solving week 1 assignment create folder with name "week1".
-- You can create subfolders in main week(week1) folder if required.
-- Add proper readme [(How to Write proper readme](https://meakaakka.medium.com/a-beginners-guide-to-writing-a-kickass-readme-7ac01da88ab3) )in week's folder or subfolder explaining about assignment, how to run assignment and any other instructions. 
-- Raise a PR against master and add your mentor as reviewer
-- Resolve PR comments if any and once your mentor approves your PR, Merge it.
+## Authors
+
+- [@vipin](https://github.com/vipin98)
+
