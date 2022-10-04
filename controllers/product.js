@@ -1,5 +1,5 @@
 const Product = require("../models/product");
-const { s3Uploadv2 } = require("../s3Config");
+const { s3Uploadv3 } = require("../s3Config");
 
 // CREATE controllers
 exports.createProduct = async (req, res) => {
@@ -12,7 +12,7 @@ exports.createProduct = async (req, res) => {
     fitnessType,
     gymOwnerId,
   } = req.body;
-  const results = await s3Uploadv2(req.files);
+  const results = await s3Uploadv3(req.files);
   let imageUrl = results.map((item) => {
     return item.Location;
   });
@@ -51,7 +51,7 @@ exports.updateProduct = async (req, res) => {
     fitnessType,
     gymOwnerId,
   } = req.body;
-  const results = await s3Uploadv2(req.files);
+  const results = await s3Uploadv3(req.files);
   let imageUrl = results.map((item) => {
     return item.Location;
   });
