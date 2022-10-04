@@ -4,7 +4,7 @@ const uuid = require("uuid").v4;
 
 
 exports.s3Uploadv3 = async (featuredImageUrl) => {
-  const s3 = new S3({
+  const s3 = await new S3({
     region: process.env.AWS_REGIONs,
     accessKeyId: process.env.AWS_ACCESS_KEY,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEYs,
