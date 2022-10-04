@@ -39,11 +39,11 @@ app.use(function (req, res, next) {
 });
 
 //My Routes
-app.use("/", (req, res) => {
-  res.json({
-    hello: "its working",
-  });
-});
+// app.use("/", (req, res) => {
+//   res.json({
+//     hello: "its working",
+//   });
+// });
 // Controller for products
 app.use("/api", productRoutes);
 
