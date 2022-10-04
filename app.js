@@ -8,8 +8,6 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const multer = require("multer");
 
-
-
 //My routes
 const productRoutes = require("./routes/product");
 const adminUserRoutes = require("./routes/adminUser");
@@ -41,7 +39,11 @@ app.use(function (req, res, next) {
 });
 
 //My Routes
-
+app.use("/", (req, res) => {
+  res.json({
+    hello: "its working",
+  });
+});
 // Controller for products
 app.use("/api", productRoutes);
 
