@@ -1,8 +1,8 @@
-
 # Evolve Fitness
 
-Evolve Fitness will assist users in finding their preferred Nearby fitness center experience and also businesses to list their centers to be explored by the customers. With the help of the most up-to-date interactive UI experience, where users can locate branded and local goods as well as trendy fitness centers, Users can use our platform to get the most accurate results.
+![Evolve Fitness Logo](./Logo/apple-touch-icon.png)
 
+Evolve Fitness will assist users in finding their preferred Nearby fitness center experience and also businesses to list their centers to be explored by the customers. With the help of the most up-to-date interactive UI experience, where users can locate branded and local goods as well as trendy fitness centers, Users can use our platform to get the most accurate results.
 
 ## Table of Contents
 
@@ -11,6 +11,7 @@ Evolve Fitness will assist users in finding their preferred Nearby fitness cente
 3. [Technology Stack](#Technology-Stack)
 4. [Authors](#authors)
 5. [License](#license)
+
 ## Demo
 
 https://evolvefitness-359319.web.app/
@@ -26,6 +27,7 @@ Install Evolve Fitness with npm
 
   npm start
 ```
+
 ## Technology Stack
 
 We have used MERN stack for the project with some new technologies.
@@ -35,11 +37,9 @@ We have used MERN stack for the project with some new technologies.
 - [Mongo DB](https://www.mongodb.com/)
 - [Render](https://render.com/)
 
-
 ## Authors
 
 - [Vipin Pandey](https://github.com/vipin98)
-
 
 ## License
 
