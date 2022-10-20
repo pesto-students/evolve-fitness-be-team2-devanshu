@@ -38,7 +38,7 @@ We have used MERN stack for the project with some new technologies.
 
 ## Authors
 
-- [Vipin pandey](https://github.com/vipin98)
+- [Vipin Pandey](https://github.com/vipin98)
 
 
 ## License
