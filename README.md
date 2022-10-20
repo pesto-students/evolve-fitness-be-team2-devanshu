@@ -15,17 +15,7 @@ Evolve Fitness will assist users in finding their preferred Nearby fitness cente
 
 https://evolvefitness-359319.web.app/
 
-
-## Technology Stack
-
-We have used MERN stack for the project with some new technologies.
-
-- [Node JS](https://nodejs.org/en/)
-- [Express Js](https://expressjs.com/)
-- [Mongo DB](https://www.mongodb.com/)
-- [Render](https://render.com/)
-
-## Installation and Run the Project
+## Installation
 
 Install Evolve Fitness with npm
 
@@ -36,6 +26,16 @@ Install Evolve Fitness with npm
 
   npm start
 ```
+## Technology Stack
+
+We have used MERN stack for the project with some new technologies.
+
+- [Node JS](https://nodejs.org/en/)
+- [Express Js](https://expressjs.com/)
+- [Mongo DB](https://www.mongodb.com/)
+- [Render](https://render.com/)
+
+
 ## Authors
 
 - [@vipin](https://github.com/vipin98)
