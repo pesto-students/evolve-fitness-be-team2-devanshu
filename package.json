@@ -1,0 +1,38 @@
+{
+  "name": "evlove-fitness-backend",
+  "version": "1.0.0",
+  "description": "Evolve fitness backend.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pesto-students/evolve-fitness-be-team2-devanshu.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pesto-students/evolve-fitness-be-team2-devanshu/issues"
+  },
+  "homepage": "https://github.com/pesto-students/evolve-fitness-be-team2-devanshu#readme",
+  "dependencies": {
+    "@aws-sdk/client-s3": "3.54.0",
+    "aws-sdk": "2.1093.0",
+    "basic-auth": "^2.0.1",
+    "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "firebase-admin": "^11.0.1",
+    "mongoose": "^6.5.1",
+    "multer": "1.4.4",
+    "nodemon": "^2.0.19",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.23.0"
+  }
+}
